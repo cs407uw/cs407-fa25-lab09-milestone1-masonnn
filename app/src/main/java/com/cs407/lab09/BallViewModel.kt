@@ -46,10 +46,10 @@ class BallViewModel : ViewModel() {
                 val scalingFactor = 100f
                 
                 // Tilt Right (values[0] > 0) -> Ball moves Right (+X) -> accX > 0
-                val xAcc = -event.values[0] * scalingFactor
+                val xAcc = event.values[0] * scalingFactor
                 
                 // Tilt Top Down (values[1] > 0) -> Ball moves Up (-Y) -> accY < 0
-                val yAcc = event.values[1] * scalingFactor
+                val yAcc = -event.values[1] * scalingFactor
 
                 currentBall.updatePositionAndVelocity(xAcc, yAcc, dT)
 
