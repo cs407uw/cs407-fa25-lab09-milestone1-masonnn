@@ -45,11 +45,13 @@ class BallViewModel : ViewModel() {
                 // A factor of 100-500 is usually good for screen coordinates.
                 val scalingFactor = 100f
                 
-                // Tilt Right (values[0] > 0) -> Ball moves Right (+X) -> accX > 0
-                val xAcc = event.values[0] * scalingFactor
+                // Tilt Right (Right side down) -> values[0] < 0. Ball should move Right (+X).
+                // So xAcc should be positive. xAcc = -values[0].
+                val xAcc = -event.values[0] * scalingFactor
                 
-                // Tilt Top Down (values[1] > 0) -> Ball moves Up (-Y) -> accY < 0
-                val yAcc = -event.values[1] * scalingFactor
+                // Upright (Top side up) -> values[1] > 0. Ball should move Down (+Y).
+                // So yAcc should be positive. yAcc = values[1].
+                val yAcc = event.values[1] * scalingFactor
 
                 currentBall.updatePositionAndVelocity(xAcc, yAcc, dT)
 
